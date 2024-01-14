@@ -1,8 +1,11 @@
 ---
 # vars file for oh-my-zsh
 
-ohmyzsh_plugin_dir: "/home/{{ username }}/.oh-my-zsh/custom/plugins"
-zshrc_file: "/home/{{ username }}/.zshrc"
+ohmyzsh_config_dir: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+ohmyzsh_plugin_dir: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/custom/plugins"
+zshrc_file: "{{ ansible_facts.env.HOME }}/.zshrc"
+# Default robbyrussell
+prompt_theme: gentoo 
 
 plugins_repos:
   - url: https://github.com/zsh-users/zsh-autosuggestions.git

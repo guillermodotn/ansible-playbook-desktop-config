@@ -1,7 +1,10 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs ZSH shell allongside Oh-my-zsh and the following plugins:
+- zsh-autosuggestions
+- zsh-history-substring-search
+- zsh-syntax-highlighting
 
 Requirements
 ------------
@@ -11,21 +14,32 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### prompt_theme
+Oh-my-zsh theme to enable
+
+### plugins_repos
+Dictionaries list that stores the plugins to be installed with zsh in the following format:
+
+    plugins_repos:
+      - url: <url_to_repo>
+        repo: <repo_name>
+      - url: <url_to_repo>
+        repo: <repo_name>
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+N/A
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: username.rolename
+          vars:
+            prompt_theme: gentoo
 
 License
 -------
@@ -35,4 +49,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Guillermo-N

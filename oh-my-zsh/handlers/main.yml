@@ -1,11 +1,11 @@
 ---
 # handlers file for oh-my-zsh
 
-- name: Clonning plugins
-  ansible.builtin.git:
-    repo: "{{ item.url }}"
-    dest: "{{ ohmyzsh_plugin_dir }}/{{ item.repo }}"
-  loop: "{{ plugins_repos }}"
+- name: Cleaning install script
+  ansible.builtin.file:
+    path: "/tmp/{{ ohmyzsh_script }}"
+    state: absent
+
 
 - name: Plugins into .zshrc
   ansible.builtin.lineinfile:

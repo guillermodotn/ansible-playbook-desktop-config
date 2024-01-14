@@ -1,6 +1,57 @@
 ---
 - hosts: localhost
   remote_user: root
+
+  vars:
+    zshrc_file: "{{ ansible_facts.env.HOME }}/.zshrc"
+
+    ohmyzsh_repo: guillermo-code-zsh
+    ohmyzsh_script: oh-my-zsh_install.sh
+
+  pre_tasks:
+
+    - name: Remove installation repo
+      ansible.builtin.file:
+        path: "/tmp/{{ ohmyzsh_repo }}"
+        state: absent
+
+    - name: Remove installation script
+      ansible.builtin.file:
+        path: "/tmp/{{ ohmyzsh_script }}"
+        state: absent
+
+    - name: Delete .oh-my-zsh directory
+      ansible.builtin.file:
+        path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+        state: absent
+
+    - name: Delete .zshrc 
+      ansible.builtin.file:
+        path: "{{ zshrc_file }}"
+        state: absent
+
+    - name: Unsetting $ZSH
+      ansible.builtin.shell:
+        cmd: unset ZSH
+      when: ansible_facts.env.ZSH is defined
+
+    - name: Change ZSH value in current shell
+      ansible.builtin.shell:
+        cmd: SHELL=/usr/bin/bash
+      when: ansible_facts.env.SHELL == "/usr/bin/zsh"
+
+    - name: Change user shell to zsh 
+      become: true
+      become_user: root
+      user:
+        name: "{{ ansible_facts.env.USER }}"
+        shell: /usr/bin/bash
+
+    # - name: Set default shell to bash
+    #   ansible.builtin.command:
+    #     cmd: SHELL=/usr/bin/bash
+    #   when: ansible_facts.env.SHELL == "/usr/bin/zsh"
+
   roles:
     - role: oh-my-zsh
       vars:

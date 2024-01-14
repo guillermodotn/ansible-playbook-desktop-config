@@ -19,6 +19,10 @@
 
     - role: gnu-pass
 
+    - role: oh-my-zsh
+      vars:
+        prompt_theme: gentoo
+
   tasks:
     - name: Done
       ansible.builtin.debug:
