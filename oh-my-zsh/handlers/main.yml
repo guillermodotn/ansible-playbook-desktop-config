@@ -3,6 +3,12 @@
 
 - name: Clonning plugins
   ansible.builtin.git:
-    repo: "{{ item }}"
-    dest: "{{ ohmyzsh_plugin_dir }}"
+    repo: "{{ item.url }}"
+    dest: "{{ ohmyzsh_plugin_dir }}/{{ item.repo }}"
   loop: "{{ plugins_repos }}"
+
+- name: Plugins into .zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ zshrc_file }}"
+    regex: '^plugins=\(git\)'
+    line: "{{ plugins_replacement }}"
