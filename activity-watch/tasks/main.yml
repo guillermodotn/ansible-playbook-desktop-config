@@ -1,0 +1,13 @@
+---
+# tasks file for activity-watch
+
+- name: Get latest release
+  community.general.github_release:
+    user: "{{ github_user }}"
+    repo: "{{ github_repo }}"
+    action: latest_release
+  register: github_version
+
+- name: Family == RedHat
+  ansible.builtin.import_tasks: RedHat.yml
+  when: ansible_facts['os_family'] == 'RedHat'

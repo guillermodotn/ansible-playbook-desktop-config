@@ -1,0 +1,48 @@
+---
+# tasks file for ansible-qtile
+
+- name: Debug
+  debug:
+    msg: "{{ mandatory_dependencies + (xorg_dependencies if display_server == 'xog' else wayland_dependencies) }}"
+
+- name: Installing dependencies for {{ display_server }} Qtile
+  become: true
+  yum:
+    name: "{{ mandatory_dependencies + (xorg_dependencies if display_server == 'xog' else wayland_dependencies) }}"
+    state: latest
+
+- name: pip dependencies
+  pip: 
+    name: "{{ pip_dependencies }}"
+
+- name: Clonning Qtile repository
+  git: "{{ qtile_repo }}"
+
+- name: Installing dependencies
+  command: "pip install {{ qtile_repo['dest'] }}/."
+  
+- name: Building Qtile
+  command: "{{ qtile_repo['dest'] }}/setup.py build"
+  register: build_output
+  ignore_errors: true
+
+- name: debug
+  debug:
+    var: build_output
+
+- name: Installing Qtile
+  command: "{{ qtile_repo['dest'] }}/setup.py install"
+  register: install_output
+  ignore_errors: true
+
+- name: debug
+  debug:
+    var: install_output
+
+- name: Adding xsession entry
+  template:
+    src: qtile-xsession.j2
+    dest: /usr/share/xsessions/qtile.desktop
+    group: root
+    owner: root
+    mode: 0644

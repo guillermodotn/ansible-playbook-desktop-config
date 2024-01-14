@@ -1,0 +1,6 @@
+---
+- hosts: fedora_vm
+  remote_user: user
+  become: true
+  roles:
+    - qtile_fedora

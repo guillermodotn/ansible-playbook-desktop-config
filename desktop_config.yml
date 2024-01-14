@@ -1,0 +1,25 @@
+---
+- name: Desktop configuration
+  hosts: localhost
+  connection: local
+  #remote_user: <remote_user>
+  vars:
+    username_name: "{{ ansible_user_id }}"
+
+  roles:
+
+    - role: activity-watch
+      vars:
+        username: "{{ username_name }}"
+        groupname: "{{ username_name }}"
+
+    - role: brave-browser
+      vars:
+        username: "{{ username_name }}"
+
+    - role: gnu-pass
+
+  tasks:
+    - name: Done
+      ansible.builtin.debug:
+        msg: Set-up finished!!

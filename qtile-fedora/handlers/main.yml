@@ -1,0 +1,6 @@
+---
+# handlers file for ansible-qtile
+
+- name: pip dependencies
+  pip: 
+    name: "{{ pip_dependencies }}"

@@ -1,0 +1,40 @@
+---
+# tasks file for brave-browser
+
+- name: Family == RedHat
+  ansible.builtin.import_tasks: RedHat.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+
+
+# - debug:
+#     var: extensions
+
+
+# - name: Get latest release
+#   community.general.github_release:
+#     user: "{{ item.github_user }}"
+#     repo: "{{ item.github_repo }}"
+#     action: latest_release
+#   register: versions
+#   loop: "{{ extensions }}"
+#   loop_control:
+#     loop_var: item
+
+# - debug:
+#     var: versions['results'][0]['tag']
+
+
+# - name: Set fact - Adding entries to dict
+#   ansible.builtin.set_fact:
+#     "{{ item[0].version }}":
+#       version: "{{ item[1].tag }}"
+#   with_together:
+#     - "{{ extensions }}"
+#     - "{{ versions['results'] }}"
+#   loop_control:
+#     loop_var: item
+
+
+
+# - debug:
+#     var: extensions

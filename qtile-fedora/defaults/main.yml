@@ -1,0 +1,22 @@
+---
+# defaults file for ansible-qtile
+#
+
+
+mandatory_dependencies: 
+  - python3-cffi
+  - python3-cairocffi
+  - python3-pip
+
+xorg_dependencies: 
+  - pango
+  - xorg-x11-server-Xorg
+  - python3-xcffib
+
+wayland_dependencies:
+  - wlroots
+
+pip_dependencies:
+  - cairocffi
+  - wheel
+  - setuptools

@@ -1,0 +1,10 @@
+---
+# vars file for ansible-qtile
+
+display_server: xog
+
+
+qtile_repo:
+  repo: https://github.com/qtile/qtile.git
+  version: master
+  dest: /tmp/qtile-repository

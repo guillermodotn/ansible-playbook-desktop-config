@@ -1,0 +1,31 @@
+---
+
+- name: Adding Brave
+  block:
+
+    # - name: Install dnf-plugins-core package
+    #   ansible.builtin.dnf:
+    #     name: dnf-plugins-core
+    #     state: present
+
+    - name: Import a key from a url
+      ansible.builtin.rpm_key:
+        state: present
+        key: "{{ brave_public_keys }}"
+
+    - name: Add repository
+      ansible.builtin.yum_repository:
+        name: brave-browser
+        description: Brave Browser
+        baseurl: https://brave-browser-rpm-release.s3.brave.com/$basearch
+        group: root
+        owner: root
+        mode: '0644'
+
+    - name: Install Brave browser
+      ansible.builtin.dnf:
+        name: "{{ brave_package }}"
+        state: latest
+
+  become: true
+  become_user: root

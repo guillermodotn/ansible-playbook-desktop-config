@@ -1,0 +1,25 @@
+---
+# defaults file for gnu-pass
+
+github_user: browserpass
+github_repo: browserpass-native
+
+
+repo: "https://github.com/{{ github_user }}/{{ github_repo }}"
+#version: 3.1.0
+version: "{{ github_version['tag'] }}"
+arch: browserpass-linux64
+release: "{{ arch }}-{{ version }}"
+asset: "{{ release }}.tar.gz"
+asset_sig: "browserpass-linux64-{{ version }}.tar.gz.asc"
+tar: "{{ repo }}/releases/download/{{ version }}/{{ asset }}"
+
+
+out_dir: "{{ release }}"
+
+default_bowser_conf_dir: /usr/lib/browserpass/
+
+
+single_user_conf_target_brave: hosts-brave-user
+multi_user_conf_target_brave: hosts-brave
+

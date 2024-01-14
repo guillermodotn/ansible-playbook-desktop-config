@@ -1,0 +1,51 @@
+---
+# tasks file for gnu-pass
+
+- name: Get latest release 
+  community.general.github_release:
+    user: "{{ github_user }}"
+    repo: "{{ github_repo }}"
+    action: latest_release
+  register: github_version
+
+- ansible.builtin.debug: 
+    var: version
+
+- name: Extracting Browser-pass
+  ansible.builtin.unarchive:
+    src: "{{ tar }}"
+    dest: /tmp
+    remote_src: true
+
+- name: Instal requirements
+  ansible.builtin.package:
+    name:
+      - pass
+      - make
+    state: present
+  become: true
+  become_user: root
+
+- name: Run 'configure' target
+  community.general.make:
+    chdir: "/tmp/{{ out_dir }}"
+    target: configure
+    params:
+      BIN: "{{ arch }}"
+
+- name: Run 'install' target
+  community.general.make:
+    chdir: "/tmp/{{ out_dir }}"
+    target: install
+    params:
+      BIN: "{{ arch }}"
+  become: true
+  become_user: root
+
+# This task must be run as root for multi user targe.
+- name: Run browser config target
+  community.general.make:
+    chdir: "{{ default_bowser_conf_dir }}"
+    target: "{{ single_user_conf_target_brave }}"
+  # become: true
+  # become_user: root
