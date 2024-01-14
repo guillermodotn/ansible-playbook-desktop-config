@@ -1,2 +1,18 @@
 ---
 # vars file for oh-my-zsh
+
+ohmyzsh_plugin_dir: "/home/{{ username }}/.oh-my-zsh/custom/plugins"
+
+plugins_repos:
+  - https://github.com/zsh-users/zsh-autosuggestions.git
+  - https://github.com/zsh-users/zsh-history-substring-search.git
+  - https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+
+
+plugins_replacement: plugins (
+    git
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
+  )

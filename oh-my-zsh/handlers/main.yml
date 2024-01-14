@@ -1,2 +1,8 @@
 ---
 # handlers file for oh-my-zsh
+
+- name: Clonning plugins
+  ansible.builtin.git:
+    repo: "{{ item }}"
+    dest: "{{ ohmyzsh_plugin_dir }}"
+  loop: "{{ plugins_repos }}"

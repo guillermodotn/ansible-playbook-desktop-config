@@ -2,4 +2,6 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - oh-my-zsh
+    - role: oh-my-zsh
+      vars:
+        username: ansible_user_id
