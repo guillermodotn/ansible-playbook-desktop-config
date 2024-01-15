@@ -6,6 +6,13 @@
     path: "/tmp/{{ ohmyzsh_script }}"
     state: absent
 
+- name: User shell to ZSH
+  become: true
+  become_user: root
+  user:
+    name: "{{ ansible_facts.env.USER }}"
+    shell: /usr/bin/zsh
+
 
 - name: Plugins into .zshrc
   ansible.builtin.lineinfile:

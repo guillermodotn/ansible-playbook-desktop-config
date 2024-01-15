@@ -8,11 +8,12 @@
 
 # Instlal the requirement zsh
 - name: Install zsh
-  ansible.builtin.apt:
+  ansible.builtin.dnf:
     name: zsh
     state: latest
   become: true
   become_user: root
+  notify: User shell to ZSH
 
 # Download the installation script
 - name: Download oh-my-zsh install script

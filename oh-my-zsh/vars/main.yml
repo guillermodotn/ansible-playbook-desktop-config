@@ -1,6 +1,6 @@
 ---
 # vars file for oh-my-zsh
-
+ohmyzsh_script: oh-my-zsh_install.sh
 ohmyzsh_config_dir: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
 ohmyzsh_plugin_dir: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/custom/plugins"
 zshrc_file: "{{ ansible_facts.env.HOME }}/.zshrc"
