@@ -23,6 +23,9 @@
       vars:
         prompt_theme: gentoo
 
+    # This must be run after installing the shell to use
+    - role: pyenv
+
   tasks:
     - name: Done
       ansible.builtin.debug:
