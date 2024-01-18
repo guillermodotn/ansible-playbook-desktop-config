@@ -1,0 +1,58 @@
+---
+# vars file for pyenv
+
+os_packages:
+  Debian:
+    - make 
+    - build-essential 
+    - libssl-dev 
+    - zlib1g-dev
+    - libbz2-dev 
+    - libreadline-dev 
+    - libsqlite3-dev 
+    - wget 
+    - curl 
+    - llvm 
+    - libncurses5-dev
+    - libncursesw5-dev 
+    - xz-utils 
+    - tk-dev 
+    - libffi-dev 
+    - liblzma-dev 
+    - python-openssl
+  RedHat:
+    - gcc 
+    - zlib-devel 
+    - bzip2 
+    - bzip2-devel 
+    - readline-devel 
+    - sqlite
+    - sqlite-devel 
+    - openssl-devel 
+    - xz 
+    - xz-devel 
+    - libffi-devel
+  Suse:
+    - zlib-devel 
+    - bzip2 
+    - libbz2-devel 
+    - libffi-devel
+    - libopenssl-devel
+    - readline-devel
+    - sqlite3
+    - sqlite3-devel
+    - xz
+    - xz-devel
+  Alpine:
+    - libffi-dev
+    - ncurses-dev
+    - openssl-dev
+    - readline-dev
+    - tk-dev
+    - xz-dev
+    - zlib-dev
+
+pyenv_path_lines: |
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
