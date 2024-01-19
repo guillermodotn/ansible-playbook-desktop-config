@@ -1,0 +1,31 @@
+---
+- name: Adding VSCodium
+  block:
+
+    - name: Import a key from a url
+      ansible.builtin.rpm_key:
+        state: present
+        key: "{{ signing_keys[ansible_os_family] }}"
+
+    - name: Setting repo variable
+      ansible.builtin.set_fact:
+        repo: "{{ repos[ansible_os_family] }}"
+
+    - name: Add repository
+      ansible.builtin.yum_repository:
+        name: "{{ repo['name'] }}"
+        description: "{{ repo['description'] }}"
+        baseurl: "{{ repo['base_url'] }}"
+        gpgkey: "{{ repo['gpg_url'] }}"
+        metadata_expire: "{{ repo['metadata_expire'] }}"
+        group: root
+        owner: root
+        mode: '0644'
+
+    - name: Install VS-Codium
+      ansible.builtin.dnf:
+        name: "{{ codium_package }}"
+        state: latest
+
+  become: true
+  become_user: root

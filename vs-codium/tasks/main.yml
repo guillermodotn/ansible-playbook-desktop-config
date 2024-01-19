@@ -1,2 +1,6 @@
 ---
 # tasks file for vs-codium
+
+
+- debug:
+    var: signing_keys[ansible_os_family]

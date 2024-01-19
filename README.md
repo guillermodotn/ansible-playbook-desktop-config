@@ -6,6 +6,11 @@
 - brave-browser
 - gnu-pass
 - qtile-fedora
+- pyenv
+
+## In progress:
+- free-tube
+- vs-codium
 
 
 ### Usage
