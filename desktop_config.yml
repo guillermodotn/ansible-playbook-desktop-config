@@ -24,7 +24,11 @@
         prompt_theme: gentoo
 
     # This must be run after installing the shell to use
-    - role: pyenv
+    #- role: pyenv
+
+    - role: synchthing
+
+    - role: vs-codium
 
   tasks:
     - name: Done

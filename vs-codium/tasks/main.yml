@@ -1,6 +1,19 @@
 ---
 # tasks file for vs-codium
 
+- name: Get latest release
+  community.general.github_release:
+    user: "{{ github_user }}"
+    repo: "{{ github_repo }}"
+    action: latest_release
+  register: github_version
 
 - debug:
-    var: signing_keys[ansible_os_family]
+    msg: "Installing VSCodium version: {{ github_version['tag'] }} for {{ ansible_os_family }} OS family"
+
+- name: Install the nginx rpm from a remote repo
+  ansible.builtin.dnf:
+    name: "{{ rpm_package }}"
+    state: present
+  become: true
+  when: ansible_os_family == "RedHat"

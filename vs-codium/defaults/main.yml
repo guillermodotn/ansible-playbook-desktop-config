@@ -1,27 +1,7 @@
 ---
 # defaults file for vs-codium
 
+github_user: VSCodium
+github_repo: vscodium
 
-codium_package: codium
-
-signing_keys:
-  RedHat: "{{ rpm_keys }}"
-  Suse: "{{ rpm_keys }}"
-
-
-repos:
-  RedHat:
-    name: vs-codium
-    description: gitlab.com_paulcarroty_vscodium_repo
-    base_url: https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1
-    gpg_url: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-    metadata_expire: 1h
-  Suse:
-    name: vs-codium
-    content: |
-      [gitlab.com_paulcarroty_vscodium_repo]
-      name=gitlab.com_paulcarroty_vscodium_repo
-      baseurl=https://download.vscodium.com/rpms/
-      enabled=1\ngpgcheck=1\nrepo_gpgcheck=1
-      gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-      metadata_expire=1h
+rpm_package: "https://github.com/{{ github_user }}/{{ github_repo }}/releases/download/{{ github_version['tag'] }}/codium-{{ github_version['tag'] }}-el7.x86_64.rpm"

@@ -1,4 +1,2 @@
 ---
 # vars file for vs-codium
-
-rpm_keys: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg

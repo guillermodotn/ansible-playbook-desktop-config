@@ -1,0 +1,40 @@
+---
+# tasks file for syncthing
+
+- name: Crontab Set-Up
+  become: true
+  become_user: root
+  block:
+    - name: Installing cronie
+      ansible.builtin.dnf:
+        name: cronie
+        state: present
+
+    - name: Enable and started - crond
+      ansible.builtin.systemd_service:
+        state: started
+        enabled: true
+        name: crond
+
+- name: Get latest release
+  community.general.github_release:
+    user: "{{ github_user }}"
+    repo: "{{ github_repo }}"
+    action: latest_release
+  register: github_version
+
+
+- name: Extracting syncthing
+  ansible.builtin.unarchive:
+    src: "{{ syncthing_tar_url }}"
+    dest: "{{ syncthing_installation_dir }}"
+    remote_src: true
+    group: "{{ ansible_user_id }}"
+    owner: "{{ ansible_user_id }}"
+  become: true
+
+- name: Making Syncthing to run at boot (crontab)
+  ansible.builtin.cron:
+    name: Syncthing
+    special_time: reboot
+    job: "{{ syncthing_bin }}"
