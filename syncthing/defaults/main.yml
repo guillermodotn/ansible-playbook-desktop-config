@@ -1,8 +1,0 @@
----
-# defaults file for syncthing
-
-syncthing_tar_url: "https://github.com/syncthing/syncthing/releases/download/{{ github_version['tag'] }}/syncthing-linux-amd64-{{ github_version['tag'] }}.tar.gz"
-syncthing_bin: "{{ syncthing_installation_dir }}/syncthing-linux-amd64-{{ github_version['tag'] }}/syncthing"
-
-github_user: syncthing
-github_repo: syncthing
