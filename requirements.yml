@@ -1,3 +1,9 @@
+# requirements.yml
 ---
 collections:
   - name: community.general
+  - name: gantsign.oh-my-zsh
+  - name: avanov.pyenv
+  - name: staticdev.brave
+  - name: guillermodotn.vscodium
+  - name: diademiemi.freetube

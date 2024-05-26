@@ -1,7 +1,0 @@
----
-# defaults file for vs-codium
-
-github_user: VSCodium
-github_repo: vscodium
-
-rpm_package: "https://github.com/{{ github_user }}/{{ github_repo }}/releases/download/{{ github_version['tag'] }}/codium-{{ github_version['tag'] }}-el7.x86_64.rpm"
