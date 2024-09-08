@@ -51,6 +51,18 @@
         freetube_version: 0.20.0
 
   tasks:
+
+    - name: Install packages
+      ansible.builtin.dnf:
+        name:
+          - eassyeffects
+          - shotwell
+          - mpv
+          - vim
+          - git
+          - pass
+          - gnome-console
+
     - name: Done
       ansible.builtin.debug:
         msg: Set-up finished!!
